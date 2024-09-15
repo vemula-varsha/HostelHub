@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="/css/dashboard.css">
+    <style>
+        /* Sidenav styling */
+        .sidenav {
+            height: 100%;
+            width: 250px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #111;
+            padding-top: 20px;
+        }
+
+        .sidenav a {
+            padding: 10px 15px;
+            text-decoration: none;
+            font-size: 18px;
+            color: white;
+            display: block;
+            transition: 0.3s;
+        }
+
+        .sidenav a:hover {
+            background-color: #575757;
+        }
+
+        .sidenav .header {
+            font-size: 22px;
+            color: white;
+            text-align: center;
+            padding: 15px;
+        }
+
+        /* Main content styling */
+        .main-content {
+            margin-left: 260px;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidenav">
+        <div class="header">
+            <span id="adminName"></span>
+        </div>
+        <a href="admin-complaints.html">Manage Complaints</a>
+        <a href="admin-suggestions.html">View Suggestions</a>
+        <a href="admin-announcements.html">Post Announcements</a>
+        <a href="#" id="logout">Logout</a>
+    </div>
+
+    <div class="main-content">
+        <h1 style="text-align: center;">Welcome Admin..!</h1>
+        <ul id="pendingComplaintsList"></ul>
+    </div>
+
+    <script type="module" src="/js/admin-dashboard.js"></script>
+</body>
+</html>
+

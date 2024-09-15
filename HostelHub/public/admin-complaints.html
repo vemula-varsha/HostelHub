@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Complaints</title>
+    <link rel="stylesheet" href="/css/dashboard.css">
+</head>
+<body>
+     <h2 style="text-align: center;">Complaints</h2>
+
+    <header>
+        <nav class="sidenav">
+           
+            <a href="admin-dashboard.html">Home</a>
+            <a href="admin-complaints.html" class="active">Complaints</a>
+            <a href="admin-suggestions.html">Suggestions</a>
+            <a href="admin-announcements.html">Announcements</a>
+            <a href="#" id="logout">Logout</a>
+        </nav>
+    </header>
+
+    <main>
+        <h1>Complaints Management</h1>
+        <div class="complaints-list">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Hostel</th>
+                        <th>Room Number</th>
+                        <th>Type of Complaint</th>
+                        <th>Description</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="complaintsTableBody">
+                    <!-- Complaints will be dynamically loaded here -->
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <script  type="module" src="/js/admin-complaints.js"></script>
+</body>
+</html>
