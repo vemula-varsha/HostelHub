@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="/css/style1.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Left side with Image -->
+        <div class="left-side"></div>
+
+        <!-- Right side with Register form -->
+        <div class="register-container">
+            <div>
+                <h2>Register</h2>
+                <form id="register-form" method="POST" action="/register">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" placeholder="Enter your name" required>
+                
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" placeholder="Enter email" required>
+                    
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" placeholder="Enter password" required>
+                
+                    <label for="role">Role:</label>
+                    <select id="role" name="role" required>
+                        <option value="student">Student</option>
+                        <option value="admin">Admin</option>
+                    </select>
+                
+                    <!-- Fields for students only, initially hidden -->
+                    <div id="student-fields" style="display: none;">
+                        <label for="hostel">Hostel:</label>
+                        <input type="text" id="hostel" name="hostel" placeholder="Enter hostel name">
+                
+                        <label for="room-number">Room Number:</label>
+                        <input type="text" id="room-number" name="room-number" placeholder="Enter room number">
+                    </div>
+                
+                    <label for="phone-number">Phone Number:</label>
+                    <input type="tel" id="phone-number" name="phone-number" placeholder="Enter phone number" required>
+                
+                    <button type="submit">Register</button>
+                </form>
+                
+                <p>Already have an account? <a href="login.html">Login here</a>.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const studentFields = document.getElementById('student-fields');
+            const roleSelect = document.getElementById('role');
+
+            // Hide/show student fields based on the role selected
+            roleSelect.addEventListener('change', function() {
+                if (this.value === 'student') {
+                    studentFields.style.display = 'block';
+                    document.getElementById('hostel').required = true;
+                    document.getElementById('room-number').required = true;
+                } else {
+                    studentFields.style.display = 'none';
+                    document.getElementById('hostel').required = false;
+                    document.getElementById('room-number').required = false;
+                }
+            });
+        });
+    </script>
+
+    <script type="module" src="/js/firebase-config.js"></script>
+    <script type="module" src="/js/auth.js"></script>
+</body>
+</html>

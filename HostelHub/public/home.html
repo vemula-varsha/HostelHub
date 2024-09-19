@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hostel Hub - Parallax Pages</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: Arial, sans-serif;
+            scroll-behavior: smooth;
+        }
+        .navbar {
+            background-color: transparent;
+            overflow: hidden;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+        }
+
+        .navbar a {
+            color: white;
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+            font-size: 17px;
+        }
+
+        .navbar a:hover {
+            background-color: transparent;
+            color: rgb(68, 53, 53);
+        }
+
+        .navbar-links {
+            display: flex;
+        }
+
+        .navbar-links a {
+            display: block;
+        }
+
+        .icon {
+            display: none;
+            cursor: pointer;
+        }
+
+        .icon i {
+            font-size: 24px;
+            color: white;
+        }
+
+        /* General Styles for Parallax Pages */
+        .parallax {
+            height: 100vh;
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            color: rgb(255, 255, 255);
+        }
+
+        /* Overlay for better readability - Reduced opacity */
+        .parallax::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.3); /* Reduced opacity */
+            z-index: 0;
+        }
+
+        .content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            padding: 20px;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes bounceIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        /* Apply Animations to Text */
+        h1, h2 {
+            font-size: 4vw;
+            margin: 0;
+            text-align: center;
+            animation: fadeIn 2s ease-out forwards;
+        }
+
+        h1 {
+            animation: slideIn 1.5s ease-out forwards;
+        }
+
+        h2 {
+            animation: bounceIn 2s ease-in-out forwards;
+        }
+
+        p {
+            font-size: 1.5vw;
+            margin: 20px auto;
+            max-width: 900px;
+            line-height: 1.6;
+            animation: fadeIn 2.5s ease-out forwards;
+        }
+
+        /* Parallax Sections */
+        .parallax-1 {
+            background-image: url('/images/download.jpeg');
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        .parallax-1 h1 {
+            font-size: 60px;
+        }
+        .parallax-1 p {
+            font-size: 23px;
+            color: rgb(50, 30, 30);
+        }
+        .parallax-2 {
+            background-image: url('/images/download.jpeg');
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .parallax-3 {
+            background-image: url('/images/download.jpeg'), url('/images/download.jpeg');
+            background-size: cover, cover;
+            background-position: center, center;
+            background-blend-mode: overlay;
+        }
+
+        /* Features Section */
+        .features-container {
+            position: relative;
+            z-index: 1;
+            max-width: 1200px;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            padding: 0 20px;
+        }
+
+        .feature-box {
+            background: linear-gradient(135deg, rgba(208, 146, 136, 0.8),rgba(211, 166, 166, 0.8) ,rgba(215, 192, 192, 0.759));
+            color: #333;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            text-align: left;
+            font-size: 1.2vw;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            height: 250px;
+            animation: fadeIn 3s ease-out forwards;
+        }
+
+        .parallax-2 h1 {
+            margin: 30px;
+            font-size: 40px;
+        }
+
+        .feature-box h3 {
+            margin-top: 0;
+            font-size: 1.5vw;
+            animation: slideIn 2s ease-in forwards;
+        }
+
+        .feature-box p {
+            margin: 10px 0 0;
+            font-size: 1.2vw;
+            animation: bounceIn 2s ease-in forwards;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .navbar-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .navbar-links a {
+                padding: 14px 20px;
+                text-align: center;
+                background-color: #333;
+            }
+
+            .navbar-links.active {
+                display: flex;
+            }
+
+            .icon {
+                display: block;
+            }
+
+            h1 {
+                font-size: 7vw;
+            }
+
+            p {
+                font-size: 4vw;
+            }
+
+            .features-container {
+                grid-template-columns: 1fr;
+            }
+
+            .feature-box {
+                font-size: 4vw;
+                height: auto;
+            }
+
+            h2 {
+                font-size: 5vw;
+            }
+
+            th, td {
+                font-size: 3.5vw;
+            }
+        }
+
+        /* Styles for Table */
+        .complaint-table {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            margin: 20px auto;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 2s ease-out forwards;
+        }
+
+        .complaint-table h2 {
+            text-align: center;
+            font-size: 2vw;
+            color: #3f80e1;
+            animation: bounceIn 2.5s ease-in-out forwards;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #2f4158;
+            color: white;
+        }
+
+        td {
+            background-color: #f4f6f8;
+            color: #333;
+        }
+
+        tr:hover {
+            background-color: #d8e3eb;
+        }
+        .navbar a {
+            font-size: 25px;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <div class="navbar">
+        <div class="navbar-links">
+            <a href="home.html">Home</a>
+            <a href="login.html">Login/Signup</a>
+            <a href="login.html">Admin Login</a>
+            <a href="contact.html">Contact</a>
+        </div>
+        <div class="icon" onclick="toggleMenu()">
+            <i class="fa fa-bars"></i>
+        </div>
+    </div>
+
+    <!-- Parallax Page 1: Hostel Hub -->
+    <div class="parallax parallax-1">
+        <div class="content">
+            <h1>Hostel Hub</h1>
+            <p>Welcome to the Hostel Complaint Management and Feedback System, a web-based platform dedicated to improving the living experience for students residing in hostels. This system empowers students to voice concerns and feedback, fostering a collaborative environment between students and hostel management.</p>
+        </div>
+    </div>
+
+    <!-- Parallax Page 2: Key Features -->
+    <div class="parallax parallax-2">
+        <div class="content">
+            <h1>Key Features</h1>
+            <div class="features-container">
+                <div class="feature-box">
+                    <b><h3>Complaint Submission</h3></b>
+                    <p>The system offers a user-friendly interface that allows students to submit complaints effortlessly.</p>
+                </div>
+                <div class="feature-box">
+                    <h3>Issue Categorization</h3>
+                    <p>Complaints can be categorized based on their nature, such as maintenance, noise, or food quality, for efficient organization.</p>
+                </div>
+                <div class="feature-box">
+                    <h3>Real-Time Tracking</h3>
+                    <p>Students can track the status of their complaints in real-time, providing transparency and updates.</p>
+                </div>
+                <div class="feature-box">
+                    <h3>Secure Communication</h3>
+                    <p>The system ensures secure communication channels for students to express their concerns and feedback confidentially.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Parallax Page 3: Additional Section (Placeholder) -->
+    <div class="parallax parallax-3">
+        <div class="content">
+            <h2>Efficient Tracking and Resolution of Complaints</h2>
+            <!-- Add Image at the start of the third parallax section -->
+            
+            <!-- Table for Complaints -->
+            <div class="complaint-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Complaint ID</th>
+                            <th>Category</th>
+                            <th>Status</th>
+                            <th>Assigned To</th>
+                            <th>Resolution Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>12345</td>
+                            <td>Maintenance</td>
+                            <td>Resolved</td>
+                            <td>John Smith</td>
+                            <td>2023-10-26</td>
+                        </tr>
+                        <tr>
+                            <td>67890</td>
+                            <td>Noise</td>
+                            <td>In Progress</td>
+                            <td>Jane Doe</td>
+                            <td>N/A</td>
+                        </tr>
+                        <tr>
+                            <td>11122</td>
+                            <td>Food Quality</td>
+                            <td>Pending</td>
+                            <td>N/A</td>
+                            <td>N/A</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script>
+        function toggleMenu() {
+            const navbarLinks = document.querySelector('.navbar-links');
+            navbarLinks.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>
